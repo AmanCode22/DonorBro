@@ -11,4 +11,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+        tauri::Builder::default()
+        .plugin(tauri_plugin_m3::init())
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
