@@ -1,6 +1,7 @@
-
+import { platform } from '@tauri-apps/plugin-os';
 
 function App() {
-  return <button>Heysy</button>;
+  const currentPlatform = platform();
+  return (<h1>{{currentPlatform}}</h1>);
 }
 export default App;

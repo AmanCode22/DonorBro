@@ -6,4 +6,9 @@ pub fn run() {
         .plugin(tauri_plugin_sql::Builder::default().build())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+    tauri::Builder::default()
+        .plugin(tauri_plugin_os::init())
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+
 }
