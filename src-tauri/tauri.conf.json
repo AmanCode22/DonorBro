@@ -10,12 +10,28 @@
     "frontendDist": "../dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
-      {
-        "title": "donorbro",
-        "width": 800,
-        "height": 600
-      }
+     {
+      "label": "main",
+      "title": "DonorBro",
+      "width": 800,
+      "height": 600,
+      "visible": false,  
+      "resizable": true,
+      "fullscreen": false
+    },
+    {
+      "label": "splash",
+      "title": "Welcome",
+      "url": "splash.html",
+      "width": 450,
+      "height": 450,
+      "decorations": false,
+      "center": true,
+      "resizable": false,
+      "visible": true  
+    }
     ],
     "security": {
       "csp": null

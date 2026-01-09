@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonorBro</title>
+    <style>
+       
+        :root {
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a; 
+            --text-secondary: #64748b; 
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-surface: #121212;
+                --text-primary: #f8fafc; 
+                --text-secondary: #94a3b8;
+            }
+        }
+
+       
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-surface);
+            
+       
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            -webkit-font-smoothing: antialiased;
+            
+       
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+       
+            cursor: wait; 
+            user-select: none;
+        }
+
+        .splash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+            gap: clamp(10px, 2vh, 20px);
+            
+            
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        
+        .app-icon {
+        
+            width: clamp(64px, 20vmin, 120px);
+            height: clamp(64px, 20vmin, 120px);
+            object-fit: contain;
+            
+           
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            
+           
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        .brand-name {
+            margin: 0;
+
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700; 
+            color: var(--text-primary);
+            letter-spacing: -0.02em; 
+            line-height: 1.1;
+        }
+
+        .tagline {
+            margin: 0;
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.01em;
+        }
+
+        
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.03); filter: brightness(1.1); }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+
+    <div class="splash-content">
+        <img src="app-icon.png" alt="DonorBro" class="app-icon">
+        
+        <div>
+            <h1 class="brand-name">DonorBro</h1>
+            <p class="tagline">Starting...</p>
+        </div>
+    </div>
+
+</body>
+</html>
