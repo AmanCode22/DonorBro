@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { platform } from "@tauri-apps/plugin-os";
-import {Index as Index_Android} from "./AndroidIndex.jsx";
-import {Index} from "./OtherIndex.jsx";
+import Index_Android from "./AndroidIndex.jsx";
+import Index from "./OtherIndex.jsx";
 
 function App() {
   const currentPlatform = platform();
-  
   
   const [loading, setLoading] = useState(true);
   
@@ -17,7 +16,6 @@ function App() {
       : false
   );
 
-  
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -26,18 +24,19 @@ function App() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
- 
   useEffect(() => {
     const initApp = async () => {
-      // Here load heavy things then comment below as after it only splash would be loaded
-      await new Promise(resolve => setTimeout(resolve, 20));
+      // Setup delay to allow app to initialize and splash to be seen
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       const appWindow = getCurrentWindow();
       
-     
-      await appWindow.show();
-      await appWindow.setFocus();
-
+      try {
+        await appWindow.show();
+        await appWindow.setFocus().catch(e => console.warn("Focus failed:", e));
+      } catch (err) {
+        console.warn("Failed to show main window:", err);
+      }
       
       try {
         const splashWindow = await WebviewWindow.getByLabel('splash');
@@ -45,7 +44,7 @@ function App() {
           await splashWindow.close();
         }
       } catch (err) {
-        console.warn("Splash window not found or already closed");
+        console.warn("Splash window not found or already closed:", err);
       }
 
       setLoading(false);
@@ -54,7 +53,6 @@ function App() {
     initApp();
   }, []);
 
-  
   if (loading) {
     return (
       <div
@@ -120,7 +118,7 @@ function App() {
                 letterSpacing: '0.01em',
               }}
             >
-              Please Wait For Few More Seconds...
+              Starting...
             </p>
           </div>
         </div>
@@ -128,12 +126,10 @@ function App() {
     );
   }
 
-  
-  if (platform=="android") {
-    return <Index2></Index2>
-  }
-  else{
-    return <Index></Index>
+  if (currentPlatform === "android") {
+    return <Index_Android />;
+  } else {
+    return <Index />;
   }
 }
 
