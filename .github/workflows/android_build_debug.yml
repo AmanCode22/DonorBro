@@ -17,18 +17,18 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+      
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'pnpm'
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10
-      
+ 
       - name: Install System Dependencies
         run: |
           sudo apt update
