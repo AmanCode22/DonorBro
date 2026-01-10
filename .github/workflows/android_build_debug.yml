@@ -55,7 +55,8 @@ jobs:
 
       
       - name: Build Android APK(Debug)
-        run: pnpm tauri android build --debug --apk
+        run: pnpm tauri android build --debug
+
         env:
       
           JAVA_HOME: ${{ env.JAVA_HOME }}
