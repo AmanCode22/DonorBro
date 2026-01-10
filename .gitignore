@@ -15,12 +15,6 @@ dist-ssr
 # Node
 node_modules/
 
-# Allow only this plugin from node_modules
-!node_modules/tauri-plugin-m3/
-!node_modules/tauri-plugin-m3/**
-
-# Keep everything else ignored
-node_modules/*
 
 # Editor
 .vscode/*
