@@ -20,7 +20,7 @@ node_modules/
 !node_modules/tauri-plugin-m3/**
 
 # Keep everything else ignored
-# node_modules/*
+node_modules/*
 
 # Editor
 .vscode/*
