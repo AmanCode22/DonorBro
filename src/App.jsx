@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { platform } from "@tauri-apps/plugin-os";
-import Index_Android from "./AndroidIndex.jsx";
-import Index from "./OtherIndex.jsx";
+import RoleSelection from "./ui/screens/RoleSelection";
 
 function App() {
   const currentPlatform = platform();
@@ -26,27 +25,22 @@ function App() {
 
   useEffect(() => {
     const initApp = async () => {
-      // Setup delay to allow app to initialize and splash to be seen
+      // Yaha par heavy loading ka kaam krna hai aur yeh waiting hatani hai this increases splash duration and delays main app
       await new Promise(resolve => setTimeout(resolve, 500));
-
-      const appWindow = getCurrentWindow();
       
-      try {
-        await appWindow.show();
-        await appWindow.setFocus().catch(e => console.warn("Focus failed:", e));
-      } catch (err) {
-        console.warn("Failed to show main window:", err);
-      }
-      
-      try {
-        const splashWindow = await WebviewWindow.getByLabel('splash');
-        if (splashWindow) {
-          await splashWindow.close();
+      if (currentPlatform !== 'android' && currentPlatform !== 'ios') {
+        try {
+          const splashWindow = await WebviewWindow.getByLabel('splash');
+          if (splashWindow) {
+            await splashWindow.close();
+          }
+          const appWindow = getCurrentWindow();
+          await appWindow.show();
+          await appWindow.setFocus();
+        } catch (err) {
+          console.warn(err);
         }
-      } catch (err) {
-        console.warn("Splash window not found or already closed:", err);
       }
-
       setLoading(false);
     };
 
@@ -118,7 +112,7 @@ function App() {
                 letterSpacing: '0.01em',
               }}
             >
-              Starting...
+              Please wait for few more seconds....
             </p>
           </div>
         </div>
@@ -126,11 +120,7 @@ function App() {
     );
   }
 
-  if (currentPlatform === "android") {
-    return <Index_Android />;
-  } else {
-    return <Index />;
-  }
+  return <RoleSelection />;
 }
 
 export default App;
