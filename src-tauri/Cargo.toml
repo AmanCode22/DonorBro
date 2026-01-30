@@ -2,8 +2,8 @@
 name = "donorbro"
 version = "0.1.0"
 description = "DonorBro is an intelligent donation matching platform using AI and blockchain to securely connect donors with people in urgent need. It ensures fast matching, verified records, encrypted data, and transparent coordination between donors, receivers, hospitals, and authorities."
-authors = ["you"]
-edition = "2021"
+authors = ["Aman Adlakha"]
+edition = "2026"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
