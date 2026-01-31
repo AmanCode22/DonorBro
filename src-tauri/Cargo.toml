@@ -3,7 +3,7 @@ name = "donorbro"
 version = "0.1.0"
 description = "DonorBro is an intelligent donation matching platform using AI and blockchain to securely connect donors with people in urgent need. It ensures fast matching, verified records, encrypted data, and transparent coordination between donors, receivers, hospitals, and authorities."
 authors = ["Aman Adlakha"]
-edition = "2026"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -23,12 +23,10 @@ tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tauri-plugin-sql = { version = "2.3.1", features = ["sqlite", "mysql"] }
 tauri-plugin-os = "2.3.2"
 tauri-plugin-fs = "2.4.5"
 tauri-plugin-store = "2.4.2"
 tauri-plugin-notification = "2.3.3"
-tauri-plugin-shell = "2.3.4"
 tauri-plugin-dialog = "2.5.0"
 tauri-plugin-process = "2.3.1"
 tauri-plugin-m3 = "0.3.0"
